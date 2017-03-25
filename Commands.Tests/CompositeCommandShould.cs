@@ -1,5 +1,4 @@
-﻿using System.Data.SqlClient;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
