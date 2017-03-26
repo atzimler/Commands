@@ -7,7 +7,7 @@
 
   <target name="pre-build">
     <fileset id="pdbs">
-        <include name="Source/Commands/packages/FluentAssertions*/**/*.pdb" />
+        <include name="**/FluentAssertions*/**/*.pdb" />
     </fileset>
     <echo message="Removing FluentAssertions pdbs:"/>
     <foreach item="File" property="filename">
