@@ -9,16 +9,6 @@
     <fileset id="pdbs">
         <include name="**/FluentAssertions*/**/*.pdb" />
     </fileset>
-    <echo message="Removing FluentAssertions pdbs:"/>
-    <foreach item="File" property="filename">
-      <in>
-        <items refid="pdbs" />
-      </in>
-      <do>
-        <echo message="- ${filename}"/>
-      </do>
-    </foreach>
-
     <delete verbose="true">
       <fileset refid="pdbs" />
     </delete>
