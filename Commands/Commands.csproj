@@ -42,8 +42,29 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ATZ.DependencyInjection, Version=2.0.0.63, Culture=neutral, processorArchitecture=MSIL" Condition="'$(TargetFrameworkVersion)' == 'v4.5.2'">
+      <HintPath>..\packages\ATZ.DependencyInjection.2.0.0.63\lib\net452\ATZ.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="ATZ.DependencyInjection, Version=2.0.0.63, Culture=neutral, processorArchitecture=MSIL" Condition="'$(TargetFrameworkVersion)' == 'v4.5'">
+      <HintPath>..\packages\ATZ.DependencyInjection.2.0.0.63\lib\net45\ATZ.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="ATZ.DependencyInjection.System.Windows, Version=2.2.0.73, Culture=neutral, processorArchitecture=MSIL" Condition="'$(TargetFrameworkVersion)' == 'v4.5.2'">
+      <HintPath>..\packages\ATZ.DependencyInjection.System.Windows.2.2.0.73\lib\net452\ATZ.DependencyInjection.System.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="ATZ.DependencyInjection.System.Windows, Version=2.2.0.73, Culture=neutral, processorArchitecture=MSIL" Condition="'$(TargetFrameworkVersion)' == 'v4.5'">
+      <HintPath>..\packages\ATZ.DependencyInjection.System.Windows.2.2.0.73\lib\net45\ATZ.DependencyInjection.System.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="ATZ.Reflection, Version=2.2.0.58, Culture=neutral, processorArchitecture=MSIL" Condition="'$(TargetFrameworkVersion)' == 'v4.5.2'">
+      <HintPath>..\packages\ATZ.Reflection.2.2.0.58\lib\net452\ATZ.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="ATZ.Reflection, Version=2.2.0.58, Culture=neutral, processorArchitecture=MSIL" Condition="'$(TargetFrameworkVersion)' == 'v4.5'">
+      <HintPath>..\packages\ATZ.Reflection.2.2.0.58\lib\net45\ATZ.Reflection.dll</HintPath>
+    </Reference>
     <Reference Include="JetBrains.Annotations, Version=10.4.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
       <HintPath>..\packages\JetBrains.Annotations.10.4.0\lib\net\JetBrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -59,9 +80,11 @@
       <Link>AssemblyVersion.cs</Link>
     </Compile>
     <Compile Include="CompositeCommand.cs" />
+    <Compile Include="MessageBoxQuestionCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="ATZ.Commands.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>

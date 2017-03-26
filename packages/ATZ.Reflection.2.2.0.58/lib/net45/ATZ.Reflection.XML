@@ -1,0 +1,157 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ATZ.Reflection</name>
+    </assembly>
+    <members>
+        <member name="T:ATZ.Reflection.ImplBase">
+            <summary>
+            Base class for separating class usage from requirement of referencing the library on lower level.
+            </summary>
+        </member>
+        <member name="M:ATZ.Reflection.ImplBase.#ctor(System.Object)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="impl">The implementation object to wrap.</param>
+            <exception cref="T:System.ArgumentNullException">The object to be wrapped is null.</exception>
+        </member>
+        <member name="M:ATZ.Reflection.ImplBase.AddEvent``1(System.String,System.String)">
+            <summary>
+            Attach event handler to an event.
+            </summary>
+            <typeparam name="T">The type of the event arguments.</typeparam>
+            <param name="eventName">The name of the event.</param>
+            <param name="handlerName">The name of the event handler.</param>
+            <exception cref="T:System.ArgumentNullException">handlerName is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">The event named in eventName or the handler named handlerName doest not exist.</exception>
+        </member>
+        <member name="M:ATZ.Reflection.ImplBase.ExecuteFunction(System.String,System.Type[],System.Object[])">
+            <summary>
+            Execute a function on the wrapped object.
+            </summary>
+            <param name="functionName">The name of the function to execute.</param>
+            <param name="parameterTypes">The types of the parameters passed to the function.</param>
+            <param name="parameters">The parameters of the function.</param>
+            <returns>The return value of the function.</returns>
+            <exception cref="T:System.ArgumentNullException">functionName or parameterTypes is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Class function with functionName and parameterTypes parameters does not exist.</exception>
+        </member>
+        <member name="M:ATZ.Reflection.ImplBase.ExecuteMethod(System.String,System.Object[])">
+            <summary>
+            Execute a method on the wrapped object.
+            </summary>
+            <param name="methodName">The name of the method to execute.</param>
+            <param name="parameters">The parameters of the method. The parameter array should not contain a null value,
+            because in that case the type of the object cannot be automatically determined.
+            <seealso cref="M:ATZ.Reflection.ImplBase.ExecuteMethod(System.String,System.Type[],System.Object[])"/>
+            </param>
+            <exception cref="T:System.ArgumentNullException">The argument functionName or parameters is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Class function with functionName and parameterTypes parameters does not exist, or parameters contains a null value.</exception>
+        </member>
+        <member name="M:ATZ.Reflection.ImplBase.ExecuteMethod(System.String,System.Type[],System.Object[])">
+            <summary>
+            Execute a method on the wrapped object.
+            </summary>
+            <param name="methodName">The name of the method to execute.</param>
+            <param name="parameterTypes">The type of the parameters.</param>
+            <param name="parameters">The parameters of the method.</param>
+            <exception cref="T:System.ArgumentNullException">functionName or parameters is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Class function with functionName and parameterTypes parameters does not exist.</exception>
+        </member>
+        <member name="M:ATZ.Reflection.ImplBase.GetProperty``1(System.String)">
+            <summary>
+            Get the value of a property.
+            </summary>
+            <typeparam name="T">The type of the property.</typeparam>
+            <param name="propertyName">The name of the property.</param>
+            <returns>The value of the property.</returns>
+            <exception cref="T:System.ArgumentNullException">propertyName is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Property named in propertyName does not exist or does not have accessible getter.</exception>
+        </member>
+        <member name="M:ATZ.Reflection.ImplBase.RemoveEvent``1(System.String,System.String)">
+            <summary>
+            Detach event handler from an event.
+            </summary>
+            <typeparam name="T">The type of the event arguments.</typeparam>
+            <param name="eventName">The name of the event.</param>
+            <param name="handlerName">The name of the event handler.</param>
+            <exception cref="T:System.ArgumentNullException">handlerName is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">The event named in eventName or the handler named handlerName doest not exist.</exception>
+        </member>
+        <member name="M:ATZ.Reflection.ImplBase.SetProperty``1(System.String,``0)">
+            <summary>
+            Set the value of a property.
+            </summary>
+            <typeparam name="T">The type of the property.</typeparam>
+            <param name="propertyName">The name of the property.</param>
+            <param name="value">The value of the property.</param>
+            <exception cref="T:System.ArgumentNullException">propertyName is null.</exception>
+        </member>
+        <member name="T:ATZ.Reflection.Linq.TypeEnumerableExtensions">
+            <summary>
+            LINQ extensions for manipulating type information.
+            </summary>
+        </member>
+        <member name="M:ATZ.Reflection.Linq.TypeEnumerableExtensions.Types(System.Collections.Generic.IEnumerable{System.Object})">
+            <summary>
+            Converts an object enumeration into a type enumeration by getting the type of each objects.
+            </summary>
+            <param name="objects">The object enumeration.</param>
+            <returns>The types of the objects.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">One or more object in the enumeration is null.</exception>
+        </member>
+        <member name="T:ATZ.Reflection.TypeExtensions">
+            <summary>
+            Extension methods for the Type type.
+            </summary>
+        </member>
+        <member name="M:ATZ.Reflection.TypeExtensions.CloseTemplate(System.Type,System.Type[])">
+            <summary>
+            Close the the generic template with the specified types.
+            </summary>
+            <param name="type">The generic type to close with the provided arguments.</param>
+            <param name="typeArguments">The types used to create the concrete type from the generic template.</param>
+            <returns>The concrete type created from type by using typeArguments.</returns>
+            <exception cref="T:System.ArgumentException">The count of type arguments provided mismatch the count of type arguments needed to complete the template.</exception>
+            <exception cref="T:System.ArgumentNullException">The parameter typeArguments is null.</exception>
+        </member>
+        <member name="M:ATZ.Reflection.TypeExtensions.GenericTypeParameterCount(System.Type)">
+            <summary>
+            Returns the number of type parameters in the generic type.
+            </summary>
+            <param name="type">The generic type.</param>
+            <returns>The number of type parameters in the generic type.</returns>
+        </member>
+        <member name="M:ATZ.Reflection.TypeExtensions.GetGenericTypeParameters(System.Type)">
+            <summary>
+            Returns the type parameters of the generic type.
+            </summary>
+            <param name="type">The generic type.</param>
+            <returns>The type parameters of the generic type or an empty array if the type is non-generic.</returns>
+        </member>
+        <member name="M:ATZ.Reflection.TypeExtensions.IsContravariant(System.Type)">
+            <summary>
+            Returns information on the usage of the type in the generic template.
+            </summary>
+            <param name="type">The type used in the generic template.</param>
+            <returns>True if the type is used in the generic template as contravariant (&lt;in&gt;), otherwise false.</returns>
+        </member>
+        <member name="M:ATZ.Reflection.TypeExtensions.NonGenericName(System.Type)">
+            <summary>
+            Returns the Name of the type without the indication on generic parameter count (`&lt;number&gt;).
+            </summary>
+            <param name="type">The type.</param>
+            <returns>The Name of the type with removed generic parameter count indication.</returns>
+        </member>
+        <member name="M:ATZ.Reflection.TypeExtensions.ParameterizedGenericName(System.Type,System.Type)">
+            <summary>
+            Returns a type name for the generic type with substituted type names for the parameters.
+            </summary>
+            <param name="type">The generic type.</param>
+            <param name="templateArgument">The type arguments to substitute in the name as parameters.</param>
+            <returns>The generic type name with additional parameters.</returns>
+            <exception cref="T:System.ArgumentNullException">The argument templateArgument is null.</exception>
+        </member>
+    </members>
+</doc>

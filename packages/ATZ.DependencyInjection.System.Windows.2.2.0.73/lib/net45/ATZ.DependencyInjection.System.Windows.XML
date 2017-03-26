@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ATZ.DependencyInjection.System.Windows</name>
+    </assembly>
+    <members>
+        <member name="T:ATZ.DependencyInjection.System.Windows.Bindings">
+            <summary>
+            Bindings for the ATZ.DependencyInjection.System.Windows namespace.
+            </summary>
+        </member>
+        <member name="M:ATZ.DependencyInjection.System.Windows.Bindings.Initialize">
+            <summary>
+            Initialize Bindings for the interfaces and their implementation in the ATZ.DependencyInjection.System.Windows
+            namespace.
+            </summary>
+        </member>
+        <member name="T:ATZ.DependencyInjection.System.Windows.IMessageBox">
+            <summary>
+            Interface for replacing System.Windows.MessageBox static object, so that its calls
+            can be tested for TDD.
+            </summary>
+        </member>
+        <member name="M:ATZ.DependencyInjection.System.Windows.IMessageBox.Show(System.String)">
+            <see cref="M:System.Windows.MessageBox.Show(System.String)"/>
+        </member>
+        <member name="M:ATZ.DependencyInjection.System.Windows.IMessageBox.Show(System.String,System.String)">
+            <see cref="M:System.Windows.MessageBox.Show(System.String,System.String)"/>
+        </member>
+        <member name="M:ATZ.DependencyInjection.System.Windows.IMessageBox.Show(System.String,System.String,System.Windows.MessageBoxButton)">
+            <see cref="M:System.Windows.MessageBox.Show(System.String,System.String,System.Windows.MessageBoxButton)"/>
+        </member>
+        <member name="M:ATZ.DependencyInjection.System.Windows.IMessageBox.Show(System.String,System.String,System.Windows.MessageBoxButton,System.Windows.MessageBoxImage)">
+            <see cref="M:System.Windows.MessageBox.Show(System.String,System.String,System.Windows.MessageBoxButton,System.Windows.MessageBoxImage)"/>
+        </member>
+        <member name="M:ATZ.DependencyInjection.System.Windows.IMessageBox.Show(System.String,System.String,System.Windows.MessageBoxButton,System.Windows.MessageBoxImage,System.Windows.MessageBoxResult)">
+            <see cref="M:System.Windows.MessageBox.Show(System.String,System.String,System.Windows.MessageBoxButton,System.Windows.MessageBoxImage,System.Windows.MessageBoxResult)"/>
+        </member>
+        <member name="M:ATZ.DependencyInjection.System.Windows.IMessageBox.Show(System.String,System.String,System.Windows.MessageBoxButton,System.Windows.MessageBoxImage,System.Windows.MessageBoxResult,System.Windows.MessageBoxOptions)">
+            <see cref="M:System.Windows.MessageBox.Show(System.String,System.String,System.Windows.MessageBoxButton,System.Windows.MessageBoxImage,System.Windows.MessageBoxResult,System.Windows.MessageBoxOptions)"/>
+        </member>
+        <member name="M:ATZ.DependencyInjection.System.Windows.IMessageBox.Show(System.Windows.Window,System.String)">
+            <see cref="M:System.Windows.MessageBox.Show(System.Windows.Window,System.String)"/>
+        </member>
+        <member name="M:ATZ.DependencyInjection.System.Windows.IMessageBox.Show(System.Windows.Window,System.String,System.String)">
+            <see cref="M:System.Windows.MessageBox.Show(System.Windows.Window,System.String,System.String)"/>
+        </member>
+        <member name="M:ATZ.DependencyInjection.System.Windows.IMessageBox.Show(System.Windows.Window,System.String,System.String,System.Windows.MessageBoxButton)">
+            <see cref="M:System.Windows.MessageBox.Show(System.Windows.Window,System.String,System.String,System.Windows.MessageBoxButton)"/>
+        </member>
+        <member name="M:ATZ.DependencyInjection.System.Windows.IMessageBox.Show(System.Windows.Window,System.String,System.String,System.Windows.MessageBoxButton,System.Windows.MessageBoxImage)">
+            <see cref="M:System.Windows.MessageBox.Show(System.Windows.Window,System.String,System.String,System.Windows.MessageBoxButton,System.Windows.MessageBoxImage)"/>
+        </member>
+        <member name="M:ATZ.DependencyInjection.System.Windows.IMessageBox.Show(System.Windows.Window,System.String,System.String,System.Windows.MessageBoxButton,System.Windows.MessageBoxImage,System.Windows.MessageBoxResult)">
+            <see cref="M:System.Windows.MessageBox.Show(System.Windows.Window,System.String,System.String,System.Windows.MessageBoxButton,System.Windows.MessageBoxImage,System.Windows.MessageBoxResult)"/>
+        </member>
+        <member name="M:ATZ.DependencyInjection.System.Windows.IMessageBox.Show(System.Windows.Window,System.String,System.String,System.Windows.MessageBoxButton,System.Windows.MessageBoxImage,System.Windows.MessageBoxResult,System.Windows.MessageBoxOptions)">
+            <see cref="M:System.Windows.MessageBox.Show(System.Windows.Window,System.String,System.String,System.Windows.MessageBoxButton,System.Windows.MessageBoxImage,System.Windows.MessageBoxResult,System.Windows.MessageBoxOptions)"/>
+        </member>
+        <member name="T:ATZ.DependencyInjection.System.Windows.SystemWindowsMessageBox">
+            <summary>
+            IDebug implementation that calls the System.Windows.MessageBox class.
+            </summary>
+        </member>
+        <member name="M:ATZ.DependencyInjection.System.Windows.SystemWindowsMessageBox.Show(System.String)">
+            <see cref="M:System.Windows.MessageBox.Show(System.String)"/>
+        </member>
+        <member name="M:ATZ.DependencyInjection.System.Windows.SystemWindowsMessageBox.Show(System.String,System.String)">
+            <see cref="M:System.Windows.MessageBox.Show(System.String,System.String)"/>
+        </member>
+        <member name="M:ATZ.DependencyInjection.System.Windows.SystemWindowsMessageBox.Show(System.String,System.String,System.Windows.MessageBoxButton)">
+            <see cref="M:System.Windows.MessageBox.Show(System.String,System.String,System.Windows.MessageBoxButton)"/>
+        </member>
+        <member name="M:ATZ.DependencyInjection.System.Windows.SystemWindowsMessageBox.Show(System.String,System.String,System.Windows.MessageBoxButton,System.Windows.MessageBoxImage)">
+            <see cref="M:System.Windows.MessageBox.Show(System.String,System.String,System.Windows.MessageBoxButton,System.Windows.MessageBoxImage)"/>
+        </member>
+        <member name="M:ATZ.DependencyInjection.System.Windows.SystemWindowsMessageBox.Show(System.String,System.String,System.Windows.MessageBoxButton,System.Windows.MessageBoxImage,System.Windows.MessageBoxResult)">
+            <see cref="M:System.Windows.MessageBox.Show(System.String,System.String,System.Windows.MessageBoxButton,System.Windows.MessageBoxImage,System.Windows.MessageBoxResult)"/>
+        </member>
+        <member name="M:ATZ.DependencyInjection.System.Windows.SystemWindowsMessageBox.Show(System.String,System.String,System.Windows.MessageBoxButton,System.Windows.MessageBoxImage,System.Windows.MessageBoxResult,System.Windows.MessageBoxOptions)">
+            <see cref="M:System.Windows.MessageBox.Show(System.String,System.String,System.Windows.MessageBoxButton,System.Windows.MessageBoxImage,System.Windows.MessageBoxResult,System.Windows.MessageBoxOptions)"/>
+        </member>
+        <member name="M:ATZ.DependencyInjection.System.Windows.SystemWindowsMessageBox.Show(System.Windows.Window,System.String)">
+            <see cref="M:System.Windows.MessageBox.Show(System.Windows.Window,System.String)"/>
+        </member>
+        <member name="M:ATZ.DependencyInjection.System.Windows.SystemWindowsMessageBox.Show(System.Windows.Window,System.String,System.String)">
+            <see cref="M:System.Windows.MessageBox.Show(System.Windows.Window,System.String,System.String)"/>
+        </member>
+        <member name="M:ATZ.DependencyInjection.System.Windows.SystemWindowsMessageBox.Show(System.Windows.Window,System.String,System.String,System.Windows.MessageBoxButton)">
+            <see cref="M:System.Windows.MessageBox.Show(System.Windows.Window,System.String,System.String,System.Windows.MessageBoxButton)"/>
+        </member>
+        <member name="M:ATZ.DependencyInjection.System.Windows.SystemWindowsMessageBox.Show(System.Windows.Window,System.String,System.String,System.Windows.MessageBoxButton,System.Windows.MessageBoxImage)">
+            <see cref="M:System.Windows.MessageBox.Show(System.Windows.Window,System.String,System.String,System.Windows.MessageBoxButton,System.Windows.MessageBoxImage)"/>
+        </member>
+        <member name="M:ATZ.DependencyInjection.System.Windows.SystemWindowsMessageBox.Show(System.Windows.Window,System.String,System.String,System.Windows.MessageBoxButton,System.Windows.MessageBoxImage,System.Windows.MessageBoxResult)">
+            <see cref="M:System.Windows.MessageBox.Show(System.Windows.Window,System.String,System.String,System.Windows.MessageBoxButton,System.Windows.MessageBoxImage,System.Windows.MessageBoxResult)"/>
+        </member>
+        <member name="M:ATZ.DependencyInjection.System.Windows.SystemWindowsMessageBox.Show(System.Windows.Window,System.String,System.String,System.Windows.MessageBoxButton,System.Windows.MessageBoxImage,System.Windows.MessageBoxResult,System.Windows.MessageBoxOptions)">
+            <see cref="M:System.Windows.MessageBox.Show(System.Windows.Window,System.String,System.String,System.Windows.MessageBoxButton,System.Windows.MessageBoxImage,System.Windows.MessageBoxResult,System.Windows.MessageBoxOptions)"/>
+        </member>
+    </members>
+</doc>

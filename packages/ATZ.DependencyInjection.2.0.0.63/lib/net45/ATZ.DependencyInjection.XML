@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ATZ.DependencyInjection</name>
+    </assembly>
+    <members>
+        <member name="T:ATZ.DependencyInjection.DependencyResolver">
+            <summary>
+            Class for holding the singleton instance of the Ninject kernel.
+            </summary>
+        </member>
+        <member name="P:ATZ.DependencyInjection.DependencyResolver.Instance">
+            <summary>
+            The singleton instance of the Ninject kernel.
+            </summary>
+        </member>
+        <member name="M:ATZ.DependencyInjection.DependencyResolver.Initialize">
+            <summary>
+            Initialize (or reinitialize) the kernel.
+            </summary>
+        </member>
+        <member name="M:ATZ.DependencyInjection.DependencyResolver.GetInterface(Ninject.IKernel,System.Type,System.Type)">
+            <summary>
+            Get an interface with the specified interface type for the interface argument type. If the interface contains contravariant type
+            and no specific interface binding is registered then try to apply contravariancy to locate the interface requested.
+            </summary>
+            <param name="kernel">The kernel instance used to resolve the interface type.</param>
+            <param name="interfaceType">The requested interface type.</param>
+            <param name="interfaceArgument">The type to use as the parameter of the interface. If the parameter in the interface is contravariant and no
+            exact match can be found, the algorithms try to apply contravariancy to find proper interface type binding. If this resolution leads to
+            success, the resolution is placed into the kernel for optimizing future response times.</param>
+            <returns>The result of the type resolution.</returns>
+            <exception cref="T:System.ArgumentNullException">Either kernel or interfaceType or interfaceArgument parameter is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">The interfaceType has more than one generic parameter or is non-generic. Because contravariancy resolution
+            complicates the situation if more than one parameter is used on the interface, it is currently not supported.</exception>
+            <exception cref="T:Ninject.ActivationException">The request cannot be fulfilled even when trying to apply contravariance.</exception>
+            <remarks>This is the implementation of the GetInterface without type safety on the return value to allow debugging of binding problems.</remarks>
+        </member>
+        <member name="M:ATZ.DependencyInjection.DependencyResolver.GetInterface``1(Ninject.IKernel,System.Type,System.Type)">
+            <summary>
+            Get an interface with the specified interface type for the interface argument type. If the interface contains contravariant type
+            and no specific interface binding is registered then try to apply contravariancy to locate the interface requested.
+            </summary>
+            <param name="kernel">The kernel instance used to resolve the interface type.</param>
+            <param name="interfaceType">The requested interface type.</param>
+            <param name="interfaceArgument">The type to use as the parameter of the interface. If the parameter in the interface is contravariant and no
+            exact match can be found, the algorithms try to apply contravariancy to find proper interface type binding. If this resolution leads to
+            success, the resolution is placed into the kernel for optimizing future response times.</param>
+            <returns>The result of the type resolution.</returns>
+            <exception cref="T:System.ArgumentNullException">interfaceType is null</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">The interfaceType has more than one generic parameter or is non-generic. Because contravariancy resolution
+            complicates the situation if more than one parameter is used on the interface, it is currently not supported.</exception>
+            <exception cref="T:Ninject.ActivationException">The request cannot be fulfilled even when trying to apply contravariance.</exception>
+            <exception cref="T:System.ArgumentException">The interface parameter is non-generic.</exception>
+            <remarks>Uses internally the non-typesafe version of GetInterface and returns the values in a type safe manner. When not debugging binding issues, this version of
+            the method should be used as best practice.</remarks>
+        </member>
+    </members>
+</doc>
