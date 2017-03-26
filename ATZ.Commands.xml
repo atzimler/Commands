@@ -18,6 +18,10 @@
         <echo message="- ${filename}"/>
       </do>
     </foreach>
+
+    <delete>
+      <fileset refid="pdbs" />
+    </delete>
   </target>
   
   <include buildfile="../NAnt/ATZ.Build.xml" />
