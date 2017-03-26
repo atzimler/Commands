@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{556FB940-6771-484E-8B48-C8A44E2E1263}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ATZ.Commands.Tests</RootNamespace>
+    <AssemblyName>ATZ.Commands.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'DebugNET452|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\DebugNET452\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;JETBRAINS_ANNOTATION</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'DebugNET45|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\DebugNET45\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;JETBRAINS_ANNOTATION</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ATZ.DependencyInjection, Version=2.2.0.73, Culture=neutral, processorArchitecture=MSIL" Condition="'$(TargetFrameworkVersion)' == 'v4.5.2'">
+      <HintPath>..\packages\ATZ.DependencyInjection.2.2.0.73\lib\net452\ATZ.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="ATZ.DependencyInjection, Version=2.2.0.73, Culture=neutral, processorArchitecture=MSIL" Condition="'$(TargetFrameworkVersion)' == 'v4.5'">
+      <HintPath>..\packages\ATZ.DependencyInjection.2.2.0.73\lib\net45\ATZ.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="ATZ.DependencyInjection.System.Windows, Version=2.2.0.73, Culture=neutral, processorArchitecture=MSIL" Condition="'$(TargetFrameworkVersion)' == 'v4.5.2'">
+      <HintPath>..\packages\ATZ.DependencyInjection.System.Windows.2.2.0.73\lib\net452\ATZ.DependencyInjection.System.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="ATZ.DependencyInjection.System.Windows, Version=2.2.0.73, Culture=neutral, processorArchitecture=MSIL" Condition="'$(TargetFrameworkVersion)' == 'v4.5'">
+      <HintPath>..\packages\ATZ.DependencyInjection.System.Windows.2.2.0.73\lib\net45\ATZ.DependencyInjection.System.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="ATZ.Reflection, Version=2.2.0.58, Culture=neutral, processorArchitecture=MSIL" Condition="'$(TargetFrameworkVersion)' == 'v4.5.2'">
+      <HintPath>..\packages\ATZ.Reflection.2.2.0.58\lib\net452\ATZ.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="ATZ.Reflection, Version=2.2.0.58, Culture=neutral, processorArchitecture=MSIL" Condition="'$(TargetFrameworkVersion)' == 'v4.5'">
+      <HintPath>..\packages\ATZ.Reflection.2.2.0.58\lib\net45\ATZ.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentAssertions, Version=4.19.2.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentAssertions.4.19.2\lib\net45\FluentAssertions.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentAssertions.Core, Version=4.19.2.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentAssertions.4.19.2\lib\net45\FluentAssertions.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="JetBrains.Annotations, Version=10.4.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.10.4.0\lib\net\JetBrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq, Version=4.7.7.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.7.7\lib\net45\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="MoqExtensions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MoqExtensions.0.0.2\lib\net45\MoqExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=3.6.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\AssemblyVersion.cs">
+      <Link>AssemblyVersion.cs</Link>
+    </Compile>
+    <Compile Include="CompositeCommandShould.cs" />
+    <Compile Include="MessageBoxQuestionCommandShould.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ATZ.Commands\ATZ.Commands.csproj">
+      <Project>{f831e8cd-da1b-4555-9609-dbb19794fcd9}</Project>
+      <Name>ATZ.Commands</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

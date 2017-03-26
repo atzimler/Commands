@@ -7,7 +7,7 @@ using ATZ.DependencyInjection.System.Windows;
 using JetBrains.Annotations;
 using Ninject;
 
-namespace Commands
+namespace ATZ.Commands
 {
     /// <summary>
     /// Command to ask a user a question on the View level of MVVM code structure.
