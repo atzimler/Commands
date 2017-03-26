@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<package>
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <projectUrl>https://github.com/atzimler/Commands</projectUrl>
+    <licenseUrl>https://raw.githubusercontent.com/atzimler/Commands/master/LICENSE.txt</licenseUrl>
+    <description>ATZ.Commands contains interesting ICommand implementations that are reusable between different software codes.</description>
+    <dependencies>
+      <dependency id="ATZ.DependencyInjection" version="[2.2,3)" />
+      <dependency id="ATZ.DependencyInjection.System.Windows" version="[2.2,3)" />
+    </dependencies>
+
+    <releaseNotes>
+      1.0.0:
+      - Initial NuGet Packaging.
+    </releaseNotes>
+
+    <copyright>Copyright 2017</copyright>
+  </metadata>
+
+  <files>
+    <file src="bin\DebugNET45\ATZ.Commands*.*" target="lib\net45" />
+    <file src="bin\DebugNET452\ATZ.Commands*.*" target="lib\net452" />
+  </files>
+</package>

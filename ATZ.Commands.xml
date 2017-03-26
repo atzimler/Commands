@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project name="ATZ.Commands" default="help">
+  <description>Build file for ATZ.Commands library.</description>
+
+  <property name="project.name" value="Commands" />
+  <property name="build.targetframeworks" value="NET45,NET452" />
+  <include buildfile="../NAnt/ATZ.Build.xml" />
+</project>

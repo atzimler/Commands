@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commands.Tests", "Commands.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B603C224-D3E7-4651-BE3F-BF9D13ED4967}"
 	ProjectSection(SolutionItems) = preProject
+		AssemblyVersion.cs = AssemblyVersion.cs
+		ATZ.Commands.xml = ATZ.Commands.xml
 		LICENSE.txt = LICENSE.txt
 	EndProjectSection
 EndProject
