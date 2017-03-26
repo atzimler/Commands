@@ -6,7 +6,7 @@
   <property name="build.targetframeworks" value="NET45,NET452" />
 
   <target name="pre-build">
-    <delete>
+    <delete verbose="true">
       <fileset>
         <include name="Source/Commands/packages/FluentAssertions*/**/*.pdb" />
       </fileset>
