@@ -19,7 +19,7 @@
       </do>
     </foreach>
 
-    <delete>
+    <delete verbose="true">
       <fileset refid="pdbs" />
     </delete>
   </target>
