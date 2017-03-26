@@ -1,9 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Input;
 using FluentAssertions;
 using Moq;
 using MoqExtensions;
 using NUnit.Framework;
+// ReSharper disable PossibleNullReferenceException => Moq and Fluent Assertions don't contain JetBrains annotations and as a result they are
+// triggering the null reference checker. However, this is a test code, so even if there is a null reference, it is not the end of the world.
+// The situation of having a null non-fatal null reference exception allows us to switch off the check on file level, because even if the
+// reason for such exception is something else, it will not cause product quality issues.
 
 namespace Commands.Tests
 {
@@ -294,6 +299,24 @@ namespace Commands.Tests
             cmd.Execute(parameter);
 
             subcmd.Verify(c => c.CanExecute(It.IsNotIn(parameter)), Times.Never());
+        }
+
+        [Test]
+        public void CorrectlyConstructCompositeCommandWhenNullParameterIsPassedAsICommand()
+        {
+            ICommand cmd = null;
+            // ReSharper disable once ObjectCreationAsStatement => We are testing the constructor.
+            // ReSharper disable once ExpressionIsAlwaysNull => We are testing exactly this scenario.
+            Assert.DoesNotThrow(() => new CompositeCommand(cmd));
+        }
+
+        [Test]
+        public void CorrectConstructCompositeCommandWhenNullParameterIsPassedAsIEnumerableOfICommand()
+        {
+            IEnumerable<ICommand> cmds = null;
+            // ReSharper disable once ObjectCreationAsStatement => We are testing the constructor.
+            // ReSharper disable once ExpressionIsAlwaysNull => We are testing exactly this scenario.
+            Assert.DoesNotThrow(() => new CompositeCommand(cmds));
         }
     }
 }
