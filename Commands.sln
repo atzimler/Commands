@@ -16,16 +16,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
+		DebugNET45|Any CPU = DebugNET45|Any CPU
+		DebugNET452|Any CPU = DebugNET452|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F831E8CD-DA1B-4555-9609-DBB19794FCD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F831E8CD-DA1B-4555-9609-DBB19794FCD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F831E8CD-DA1B-4555-9609-DBB19794FCD9}.DebugNET45|Any CPU.ActiveCfg = DebugNET45|Any CPU
+		{F831E8CD-DA1B-4555-9609-DBB19794FCD9}.DebugNET45|Any CPU.Build.0 = DebugNET45|Any CPU
+		{F831E8CD-DA1B-4555-9609-DBB19794FCD9}.DebugNET452|Any CPU.ActiveCfg = DebugNET452|Any CPU
+		{F831E8CD-DA1B-4555-9609-DBB19794FCD9}.DebugNET452|Any CPU.Build.0 = DebugNET452|Any CPU
 		{F831E8CD-DA1B-4555-9609-DBB19794FCD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F831E8CD-DA1B-4555-9609-DBB19794FCD9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{556FB940-6771-484E-8B48-C8A44E2E1263}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{556FB940-6771-484E-8B48-C8A44E2E1263}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{556FB940-6771-484E-8B48-C8A44E2E1263}.DebugNET45|Any CPU.ActiveCfg = DebugNET45|Any CPU
+		{556FB940-6771-484E-8B48-C8A44E2E1263}.DebugNET45|Any CPU.Build.0 = DebugNET45|Any CPU
+		{556FB940-6771-484E-8B48-C8A44E2E1263}.DebugNET452|Any CPU.ActiveCfg = DebugNET452|Any CPU
+		{556FB940-6771-484E-8B48-C8A44E2E1263}.DebugNET452|Any CPU.Build.0 = DebugNET452|Any CPU
 		{556FB940-6771-484E-8B48-C8A44E2E1263}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{556FB940-6771-484E-8B48-C8A44E2E1263}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
