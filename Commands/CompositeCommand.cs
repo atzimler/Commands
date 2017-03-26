@@ -9,6 +9,7 @@ namespace Commands
     {
         private bool _abort;
         private readonly List<ICommand> _commands = new List<ICommand>();
+        private object _parameter;
 
         public CompositeCommand()
         {
@@ -31,7 +32,7 @@ namespace Commands
         {
             var cmd = (ICommand) sender;
 
-            _abort = !cmd.CanExecute(null);
+            _abort = !cmd.CanExecute(_parameter);
         }
 
         private void OnCanExecuteChanged(object sender, EventArgs e)
@@ -47,14 +48,15 @@ namespace Commands
         public void Execute(object parameter)
         {
             _abort = false;
+            _parameter = parameter;
 
             var commandQueue = new Queue<ICommand>();
             _commands.ForEach(commandQueue.Enqueue);
-            while (commandQueue.Count > 0 && commandQueue.All(c => c.CanExecute(parameter) && !_abort))
+            while (commandQueue.Count > 0 && commandQueue.All(c => c.CanExecute(_parameter) && !_abort))
             {
                 var cmd = commandQueue.Dequeue();
                 cmd.CanExecuteChanged += AbortIfCanExecuteChangesToFalse;
-                cmd.Execute(parameter);
+                cmd.Execute(_parameter);
                 cmd.CanExecuteChanged -= AbortIfCanExecuteChangesToFalse;
             }
         }

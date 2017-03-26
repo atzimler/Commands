@@ -280,6 +280,20 @@ namespace Commands.Tests
             subcmd2.VerifyAll();
         }
 
-        // TODO: Verify that correct parameter is passed when CanExecute is queried in response of CanExecuteChanged.
+        [Test]
+        public void CommandAbortingUsesCorrectParameterToCheckIfAbortIsNeeded()
+        {
+            const string parameter = "parameter";
+
+            var subcmd = new Mock<ICommand>();
+            subcmd.Setup(c => c.CanExecute(parameter)).Returns(true);
+            subcmd.Setup(c => c.Execute(It.IsAny<string>()))
+                .Callback(() => subcmd.Raise(c => c.CanExecuteChanged += null, EventArgs.Empty));
+
+            var cmd = new CompositeCommand(subcmd.Object);
+            cmd.Execute(parameter);
+
+            subcmd.Verify(c => c.CanExecute(It.IsNotIn(parameter)), Times.Never());
+        }
     }
 }
