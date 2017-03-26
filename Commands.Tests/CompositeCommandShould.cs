@@ -50,8 +50,6 @@ namespace Commands.Tests
             Assert.DoesNotThrow(() => cmd.Execute(null));
         }
 
-        // TODO: Should handle can execute change.
-
         [Test]
         public void ExecuteOneSubCommand()
         {
@@ -180,6 +178,17 @@ namespace Commands.Tests
             cmd.Execute(null);
         }
 
+        [Test]
+        public void FollowSubCommandsCanExecuteChanged()
+        {
+            var subcmd = new TestCommand();
+            var cmd = new CompositeCommand(subcmd);
 
+            var canExecuteChanged = false;
+            cmd.CanExecuteChanged += (o, e) => { canExecuteChanged = true; };
+            subcmd.SetExecute(true);
+
+            canExecuteChanged.Should().BeTrue();
+        }
     }
 }

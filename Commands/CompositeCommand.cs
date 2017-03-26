@@ -14,13 +14,20 @@ namespace Commands
         }
 
         public CompositeCommand(ICommand command)
+            : this(new [] { command })
         {
-            _commands.Add(command);
         }
 
         public CompositeCommand(IEnumerable<ICommand> commands)
         {
             _commands.AddRange(commands);
+
+            _commands.ForEach(c => c.CanExecuteChanged += OnCanExecuteChanged);
+        }
+
+        private void OnCanExecuteChanged(object sender, EventArgs e)
+        {
+            CanExecuteChanged?.Invoke(sender, e);
         }
 
         public bool CanExecute(object parameter)
