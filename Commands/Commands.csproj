@@ -42,11 +42,11 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ATZ.DependencyInjection, Version=2.0.0.63, Culture=neutral, processorArchitecture=MSIL" Condition="'$(TargetFrameworkVersion)' == 'v4.5.2'">
-      <HintPath>..\packages\ATZ.DependencyInjection.2.0.0.63\lib\net452\ATZ.DependencyInjection.dll</HintPath>
+    <Reference Include="ATZ.DependencyInjection, Version=2.2.0.73, Culture=neutral, processorArchitecture=MSIL" Condition="'$(TargetFrameworkVersion)' == 'v4.5.2'">
+      <HintPath>..\packages\ATZ.DependencyInjection.2.2.0.73\lib\net452\ATZ.DependencyInjection.dll</HintPath>
     </Reference>
-    <Reference Include="ATZ.DependencyInjection, Version=2.0.0.63, Culture=neutral, processorArchitecture=MSIL" Condition="'$(TargetFrameworkVersion)' == 'v4.5'">
-      <HintPath>..\packages\ATZ.DependencyInjection.2.0.0.63\lib\net45\ATZ.DependencyInjection.dll</HintPath>
+    <Reference Include="ATZ.DependencyInjection, Version=2.2.0.73, Culture=neutral, processorArchitecture=MSIL" Condition="'$(TargetFrameworkVersion)' == 'v4.5'">
+      <HintPath>..\packages\ATZ.DependencyInjection.2.2.0.73\lib\net45\ATZ.DependencyInjection.dll</HintPath>
     </Reference>
     <Reference Include="ATZ.DependencyInjection.System.Windows, Version=2.2.0.73, Culture=neutral, processorArchitecture=MSIL" Condition="'$(TargetFrameworkVersion)' == 'v4.5.2'">
       <HintPath>..\packages\ATZ.DependencyInjection.System.Windows.2.2.0.73\lib\net452\ATZ.DependencyInjection.System.Windows.dll</HintPath>
