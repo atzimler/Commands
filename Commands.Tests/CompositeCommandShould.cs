@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
@@ -181,14 +182,66 @@ namespace Commands.Tests
         [Test]
         public void FollowSubCommandsCanExecuteChanged()
         {
-            var subcmd = new TestCommand();
-            var cmd = new CompositeCommand(subcmd);
+            var subcmd = new Mock<ICommand>();
+            var cmd = new CompositeCommand(subcmd.Object);
 
             var canExecuteChanged = false;
             cmd.CanExecuteChanged += (o, e) => { canExecuteChanged = true; };
-            subcmd.SetExecute(true);
+            subcmd.Raise(c => c.CanExecuteChanged += null, EventArgs.Empty);
 
             canExecuteChanged.Should().BeTrue();
         }
+
+        [Test]
+        public void CancelFurtherExecutionIfASubCommandsCanExecuteChanged()
+        {
+            var subcmd1 = new Mock<ICommand>();
+            subcmd1.Setup(c => c.CanExecute(null)).Returns(true);
+            subcmd1.Setup(c => c.CanExecute(null)).Returns(false);
+
+            var subcmd2 = new Mock<ICommand>(MockBehavior.Strict);
+            subcmd2.Setup(c => c.CanExecute(null)).Returns(true);
+
+            var cmd = new CompositeCommand(new [] {subcmd1.Object, subcmd2.Object});
+            cmd.Execute(null);
+        }
+
+        [Test]
+        public void AlreadyExecutedCommandCannotCancelFurtherExecution()
+        {
+            var subcmd1 = new Mock<ICommand>(MockBehavior.Strict);
+            subcmd1.Setup(c => c.CanExecute(null)).Returns(true);
+            subcmd1.Setup(c => c.Execute(null));
+
+            var subcmd2 = new Mock<ICommand>(MockBehavior.Strict);
+            subcmd2.Setup(c => c.CanExecute(null)).Returns(true);
+            subcmd2.Setup(c => c.CanExecute(null)).Returns(true);
+            subcmd2.Setup(c => c.Execute(null))
+                .Callback(() => subcmd1.Raise(c => c.CanExecuteChanged += null, EventArgs.Empty));
+
+            var cmd = new CompositeCommand(new [] {subcmd1.Object, subcmd2.Object});
+            cmd.Execute(null);
+        }
+
+        [Test]
+        public void BeAbleToReexecuteTheCommandsAgain()
+        {
+            var subcmd1 = new Mock<ICommand>();
+            subcmd1.Setup(c => c.CanExecute(null)).Returns(true);
+
+            var subcmd2 = new Mock<ICommand>();
+            subcmd2.Setup(c => c.CanExecute(null)).Returns(true);
+
+            var cmd = new CompositeCommand(new[] {subcmd1.Object, subcmd2.Object});
+            cmd.Execute(null);
+            cmd.Execute(null);
+
+            subcmd1.Verify(c => c.Execute(null), Times.Exactly(2));
+            subcmd2.Verify(c => c.Execute(null), Times.Exactly(2));
+        }
+
+        // TODO: Only abort execution if the change is going from true to false.
+        // TODO: Command raising CanExecuteChanged during it's execution does cancel further execution if it is going to false.
+        // TODO: Verify that correct parameter is passed when CanExecute is queried in response of CanExecuteChanged.
     }
 }

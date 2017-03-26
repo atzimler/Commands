@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Input;
 
 namespace Commands
@@ -37,12 +38,13 @@ namespace Commands
 
         public void Execute(object parameter)
         {
-            if (!CanExecute(parameter))
+            var commandQueue = new Queue<ICommand>();
+            _commands.ForEach(commandQueue.Enqueue);
+            while (commandQueue.Count > 0 && commandQueue.All(c => c.CanExecute(parameter)))
             {
-                return;
+                var cmd = commandQueue.Dequeue();
+                cmd.Execute(parameter);
             }
-
-            _commands.ForEach(c => c.Execute(parameter));
         }
 
         public event EventHandler CanExecuteChanged;
