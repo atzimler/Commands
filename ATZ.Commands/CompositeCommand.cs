@@ -54,11 +54,8 @@ namespace ATZ.Commands
         private void AbortIfCanExecuteChangesToFalse(object sender, EventArgs e)
         {
             var cmd = (ICommand) sender;
-            if (cmd == null)
-            {
-                return;
-            }
 
+            // ReSharper disable once PossibleNullReferenceException => bound inside of this object to itself - cannot be null.
             _abort = !cmd.CanExecute(_parameter);
         }
 
