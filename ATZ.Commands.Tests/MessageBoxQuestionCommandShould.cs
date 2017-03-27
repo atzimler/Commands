@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Threading;
+using System.Windows;
 using ATZ.DependencyInjection;
 using ATZ.DependencyInjection.System.Windows;
 using FluentAssertions;
@@ -96,5 +97,206 @@ namespace ATZ.Commands.Tests
             cmd.CanExecute(null).Should().BeTrue();
             canExecuteChanged.Should().BeFalse();
         }
+
+        [Test]
+        public void ExecutingPassesCorrectParameters_S()
+        {
+            const string messageBoxText = "messageBoxText";
+
+            _messageBox.Setup(m => m.Show(messageBoxText));
+
+            var cmd = new MessageBoxQuestionCommand(messageBoxText);
+            cmd.Execute(null);
+
+            _messageBox.VerifyAll();
+        }
+
+        [Test]
+        public void ExecutingPassesCorrectParameters_S_S()
+        {
+            const string messageBoxText = "messageBoxText";
+            const string caption = "caption";
+
+            _messageBox.Setup(m => m.Show(messageBoxText, caption));
+
+            var cmd = new MessageBoxQuestionCommand(messageBoxText, caption);
+            cmd.Execute(null);
+
+            _messageBox.VerifyAll();
+        }
+
+        [Test]
+        public void ExecutingPassesCorrectParameters_S_S_MBB()
+        {
+            const string messageBoxText = "messageBoxText";
+            const string caption = "caption";
+            const MessageBoxButton mbb = MessageBoxButton.OKCancel;
+
+            _messageBox.Setup(m => m.Show(messageBoxText, caption, mbb));
+
+            var cmd = new MessageBoxQuestionCommand(messageBoxText, caption, mbb);
+            cmd.Execute(null);
+
+            _messageBox.VerifyAll();
+        }
+
+        [Test]
+        public void ExecutingPassesCorrectParameters_S_S_MBB_MBI()
+        {
+            const string messageBoxText = "messageBoxText";
+            const string caption = "caption";
+            const MessageBoxButton mbb = MessageBoxButton.OKCancel;
+            const MessageBoxImage mbi = MessageBoxImage.Error;
+
+            _messageBox.Setup(m => m.Show(messageBoxText, caption, mbb, mbi));
+
+            var cmd = new MessageBoxQuestionCommand(messageBoxText, caption, mbb, mbi);
+            cmd.Execute(null);
+
+            _messageBox.VerifyAll();
+        }
+
+        [Test]
+        public void ExecutingPassesCorrectParameters_S_S_MBB_MBI_MBR()
+        {
+            const string messageBoxText = "messageBoxText";
+            const string caption = "caption";
+            const MessageBoxButton mbb = MessageBoxButton.OKCancel;
+            const MessageBoxImage mbi = MessageBoxImage.Error;
+            const MessageBoxResult mbr = MessageBoxResult.No;
+
+            _messageBox.Setup(m => m.Show(messageBoxText, caption, mbb, mbi, mbr));
+
+            var cmd = new MessageBoxQuestionCommand(messageBoxText, caption, mbb, mbi, mbr);
+            cmd.Execute(null);
+
+            _messageBox.VerifyAll();
+        }
+
+        [Test]
+        public void ExecutingPassesCorrectParameters_S_S_MBB_MBI_MBR_O()
+        {
+            const string messageBoxText = "messageBoxText";
+            const string caption = "caption";
+            const MessageBoxButton mbb = MessageBoxButton.OKCancel;
+            const MessageBoxImage mbi = MessageBoxImage.Error;
+            const MessageBoxResult mbr = MessageBoxResult.No;
+            const MessageBoxOptions o = MessageBoxOptions.DefaultDesktopOnly;
+
+            _messageBox.Setup(m => m.Show(messageBoxText, caption, mbb, mbi, mbr, o));
+
+            var cmd = new MessageBoxQuestionCommand(messageBoxText, caption, mbb, mbi, mbr, o);
+            cmd.Execute(null);
+
+            _messageBox.VerifyAll();
+        }
+
+        [Test]
+        [Apartment(ApartmentState.STA)]
+        public void ExecutingPassesCorrectParameters_W_S()
+        {
+            var w = new Window();
+            const string messageBoxText = "messageBoxText";
+
+            _messageBox.Setup(m => m.Show(w, messageBoxText));
+
+            var cmd = new MessageBoxQuestionCommand(w, messageBoxText);
+            cmd.Execute(null);
+
+            _messageBox.VerifyAll();
+        }
+
+        [Test]
+        [Apartment(ApartmentState.STA)]
+        public void ExecutingPassesCorrectParameters_W_S_S()
+        {
+            var w = new Window();
+            const string messageBoxText = "messageBoxText";
+            const string caption = "caption";
+
+            _messageBox.Setup(m => m.Show(w, messageBoxText, caption));
+
+            var cmd = new MessageBoxQuestionCommand(w, messageBoxText, caption);
+            cmd.Execute(null);
+
+            _messageBox.VerifyAll();
+        }
+
+        [Test]
+        [Apartment(ApartmentState.STA)]
+        public void ExecutingPassesCorrectParameters_W_S_S_MBB()
+        {
+            var w = new Window();
+            const string messageBoxText = "messageBoxText";
+            const string caption = "caption";
+            const MessageBoxButton mbb = MessageBoxButton.OKCancel;
+
+            _messageBox.Setup(m => m.Show(w, messageBoxText, caption, mbb));
+
+            var cmd = new MessageBoxQuestionCommand(w, messageBoxText, caption, mbb);
+            cmd.Execute(null);
+
+            _messageBox.VerifyAll();
+        }
+
+        [Test]
+        [Apartment(ApartmentState.STA)]
+        public void ExecutingPassesCorrectParameters_W_S_S_MBB_MBI()
+        {
+            var w = new Window();
+            const string messageBoxText = "messageBoxText";
+            const string caption = "caption";
+            const MessageBoxButton mbb = MessageBoxButton.OKCancel;
+            const MessageBoxImage mbi = MessageBoxImage.Error;
+
+            _messageBox.Setup(m => m.Show(w, messageBoxText, caption, mbb, mbi));
+
+            var cmd = new MessageBoxQuestionCommand(w, messageBoxText, caption, mbb, mbi);
+            cmd.Execute(null);
+
+            _messageBox.VerifyAll();
+        }
+
+        [Test]
+        [Apartment(ApartmentState.STA)]
+        public void ExecutingPassesCorrectParameters_W_S_S_MBB_MBI_MBR()
+        {
+            var w = new Window();
+            const string messageBoxText = "messageBoxText";
+            const string caption = "caption";
+            const MessageBoxButton mbb = MessageBoxButton.OKCancel;
+            const MessageBoxImage mbi = MessageBoxImage.Error;
+            const MessageBoxResult mbr = MessageBoxResult.No;
+
+            _messageBox.Setup(m => m.Show(w, messageBoxText, caption, mbb, mbi, mbr));
+
+            var cmd = new MessageBoxQuestionCommand(w, messageBoxText, caption, mbb, mbi, mbr);
+            cmd.Execute(null);
+
+            _messageBox.VerifyAll();
+        }
+
+        [Test]
+        [Apartment(ApartmentState.STA)]
+        public void ExecutingPassesCorrectParameters_W_S_S_MBB_MBI_MBR_O()
+        {
+            var w = new Window();
+            const string messageBoxText = "messageBoxText";
+            const string caption = "caption";
+            const MessageBoxButton mbb = MessageBoxButton.OKCancel;
+            const MessageBoxImage mbi = MessageBoxImage.Error;
+            const MessageBoxResult mbr = MessageBoxResult.No;
+            const MessageBoxOptions o = MessageBoxOptions.DefaultDesktopOnly;
+
+            _messageBox.Setup(m => m.Show(w, messageBoxText, caption, mbb, mbi, mbr, o));
+
+            var cmd = new MessageBoxQuestionCommand(w, messageBoxText, caption, mbb, mbi, mbr, o);
+            cmd.Execute(null);
+
+            _messageBox.VerifyAll();
+        }
+
+
+        // TODO: Can execute long (async).
     }
 }

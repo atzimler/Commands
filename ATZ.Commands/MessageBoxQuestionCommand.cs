@@ -20,7 +20,7 @@ namespace ATZ.Commands
             MessageBoxResult.OK,
             MessageBoxResult.Yes
         };
-        private readonly string _messageBoxText;
+        private readonly Func<IMessageBox, MessageBoxResult?> _func;
         private bool _canExecute;
 
         /// <summary>
@@ -34,8 +34,113 @@ namespace ATZ.Commands
         /// </summary>
         /// <see cref="IMessageBox.Show(string)"/>
         public MessageBoxQuestionCommand(string messageBoxText)
+            : this(mb => mb?.Show(messageBoxText))
         {
-            _messageBoxText = messageBoxText;
+        }
+
+        /// <summary>
+        /// Creates a question that will be asked to the user.
+        /// </summary>
+        /// <see cref="IMessageBox.Show(string, string)"/>
+        public MessageBoxQuestionCommand(string messageBoxText, string caption)
+            : this(mb => mb?.Show(messageBoxText, caption))
+        {
+        }
+
+        /// <summary>
+        /// Creates a question that will be asked to the user.
+        /// </summary>
+        /// <see cref="IMessageBox.Show(string, string, MessageBoxButton)"/>
+        public MessageBoxQuestionCommand(string messageBoxText, string caption, MessageBoxButton button)
+            : this(mb => mb?.Show(messageBoxText, caption, button))
+        {
+        }
+
+        /// <summary>
+        /// Creates a question that will be asked to the user.
+        /// </summary>
+        /// <see cref="IMessageBox.Show(string, string, MessageBoxButton, MessageBoxImage)"/>
+        public MessageBoxQuestionCommand(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon)
+            : this(mb => mb?.Show(messageBoxText, caption, button, icon))
+        {
+        }
+
+        /// <summary>
+        /// Creates a question that will be asked to the user.
+        /// </summary>
+        /// <see cref="IMessageBox.Show(string, string, MessageBoxButton, MessageBoxImage, MessageBoxResult)"/>
+        public MessageBoxQuestionCommand(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon, MessageBoxResult defaultResult)
+            : this(mb => mb?.Show(messageBoxText, caption, button, icon, defaultResult))
+        {
+        }
+
+        /// <summary>
+        /// Creates a question that will be asked to the user.
+        /// </summary>
+        /// <see cref="IMessageBox.Show(string, string, MessageBoxButton, MessageBoxImage, MessageBoxResult, MessageBoxOptions)"/>
+        public MessageBoxQuestionCommand(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon, MessageBoxResult defaultResult, MessageBoxOptions options)
+            : this(mb => mb?.Show(messageBoxText, caption, button, icon, defaultResult, options))
+        {
+        }
+
+        /// <summary>
+        /// Creates a question that will be asked to the user.
+        /// </summary>
+        /// <see cref="IMessageBox.Show(Window, string)"/>
+        public MessageBoxQuestionCommand(Window owner, string messageBoxText)
+            : this(mb => mb?.Show(owner, messageBoxText))
+        {
+        }
+
+        /// <summary>
+        /// Creates a question that will be asked to the user.
+        /// </summary>
+        /// <see cref="IMessageBox.Show(Window, string, string)"/>
+        public MessageBoxQuestionCommand(Window owner, string messageBoxText, string caption)
+            : this(mb => mb?.Show(owner, messageBoxText, caption))
+        {
+        }
+
+        /// <summary>
+        /// Creates a question that will be asked to the user.
+        /// </summary>
+        /// <see cref="IMessageBox.Show(Window, string, string, MessageBoxButton)"/>
+        public MessageBoxQuestionCommand(Window owner, string messageBoxText, string caption, MessageBoxButton button)
+            : this(mb => mb?.Show(owner, messageBoxText, caption, button))
+        {
+        }
+
+        /// <summary>
+        /// Creates a question that will be asked to the user.
+        /// </summary>
+        /// <see cref="IMessageBox.Show(Window, string, string, MessageBoxButton, MessageBoxImage)"/>
+        public MessageBoxQuestionCommand(Window owner, string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon)
+            : this(mb => mb?.Show(owner, messageBoxText, caption, button, icon))
+        {
+        }
+
+        /// <summary>
+        /// Creates a question that will be asked to the user.
+        /// </summary>
+        /// <see cref="IMessageBox.Show(Window, string, string, MessageBoxButton, MessageBoxImage, MessageBoxResult)"/>
+        public MessageBoxQuestionCommand(Window owner, string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon, MessageBoxResult defaultResult)
+            : this(mb => mb?.Show(owner, messageBoxText, caption, button, icon, defaultResult))
+        {
+        }
+
+        /// <summary>
+        /// Creates a question that will be asked to the user.
+        /// </summary>
+        /// <see cref="IMessageBox.Show(Window, string, string, MessageBoxButton, MessageBoxImage, MessageBoxResult, MessageBoxOptions)"/>
+        public MessageBoxQuestionCommand(Window owner, string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon, MessageBoxResult defaultResult, MessageBoxOptions options)
+            : this(mb => mb?.Show(owner, messageBoxText, caption, button, icon, defaultResult, options))
+        {
+        }
+
+
+        private MessageBoxQuestionCommand(Func<IMessageBox, MessageBoxResult?> func)
+        {
+            _func = func;
             _canExecute = true;
         }
 
@@ -55,7 +160,8 @@ namespace ATZ.Commands
         /// <param name="parameter">Ignored, present for ICommand interface compatibility.</param>
         public void Execute(object parameter)
         {
-            var result = _approvals.Contains(DependencyResolver.Instance.Get<IMessageBox>().Show(_messageBoxText));
+            var answer = _func(DependencyResolver.Instance.Get<IMessageBox>());
+            var result = answer.HasValue && _approvals.Contains(answer.Value);
             if (result == _canExecute)
             {
                 return;

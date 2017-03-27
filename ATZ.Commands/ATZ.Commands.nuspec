@@ -17,6 +17,9 @@
     </dependencies>
 
     <releaseNotes>
+      1.1.0:
+      - Overloads for the MessageBoxQuestionCommand.
+      
       1.0.0:
       - Initial NuGet Packaging.
     </releaseNotes>
