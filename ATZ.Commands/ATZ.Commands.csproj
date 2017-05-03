@@ -83,6 +83,7 @@
       <Link>AssemblyVersion.cs</Link>
     </Compile>
     <Compile Include="CompositeCommand.cs" />
+    <Compile Include="IfCommand.cs" />
     <Compile Include="MessageBoxQuestionCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
