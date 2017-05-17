@@ -14,10 +14,15 @@ namespace ATZ.Commands
         private readonly ICommand _ifBranch;
         private readonly ICommand _elseBranch;
 
+#pragma warning disable 0067
+        // On the IfCommand the CanExecute is never changing because we want to be able to execute the if block any time the command sequence is executed.
+        // As a result, the CanExecuteChanged event is never used here, but it is a requirement of implementing the ICommand interface.
+
         /// <summary>
         /// Never raised as the CanExecute always returns true, to allow evaluation of the function and decision on the commands to execute.
         /// </summary>
         public event EventHandler CanExecuteChanged;
+#pragma warning restore 0067
 
         /// <summary>
         /// Constructor.

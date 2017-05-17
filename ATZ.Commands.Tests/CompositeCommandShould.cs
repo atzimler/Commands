@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Input;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Moq;
 using MoqExtensions;
 using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using System.Windows.Input;
 
 // ReSharper disable PossibleNullReferenceException => Moq and Fluent Assertions don't contain JetBrains annotations and as a result they are
 // triggering the null reference checker. However, this is a test code, so even if there is a null reference, it is not the end of the world.
@@ -47,7 +47,7 @@ namespace ATZ.Commands.Tests
             var subcmd2 = new Mock<ICommand>();
             subcmd2.Setup(c => c.CanExecute(It.IsAny<object>())).Returns(canExecuteSubCommand2);
 
-            var cmd = new CompositeCommand(new[] {subcmd1.Object, subcmd2.Object});
+            var cmd = new CompositeCommand(new[] { subcmd1.Object, subcmd2.Object });
             cmd.CanExecute(null).Should().Be(canExecuteCompositeCommand);
         }
 
@@ -79,7 +79,7 @@ namespace ATZ.Commands.Tests
             var subcmd2 = new Mock<ICommand>();
             subcmd2.Setup(c => c.CanExecute(null)).Returns(true);
 
-            var cmd = new CompositeCommand(new[] {subcmd1.Object, subcmd2.Object});
+            var cmd = new CompositeCommand(new[] { subcmd1.Object, subcmd2.Object });
             cmd.Execute(null);
 
             subcmd1.Verify(c => c.Execute(null));
@@ -95,7 +95,7 @@ namespace ATZ.Commands.Tests
             var subcmd2 = new Mock<ICommand>();
             subcmd2.Setup(c => c.CanExecute(null)).Returns(true);
 
-            var cmd = new CompositeCommand(new [] {subcmd1.Object, subcmd2.Object});
+            var cmd = new CompositeCommand(new[] { subcmd1.Object, subcmd2.Object });
             cmd.Execute(null);
 
             subcmd1.Verify(c => c.CanExecute(null));
@@ -110,7 +110,7 @@ namespace ATZ.Commands.Tests
 
             var subcmd2 = new Mock<ICommand>(MockBehavior.Strict);
 
-            var cmd = new CompositeCommand(new [] {subcmd1.Object, subcmd2.Object});
+            var cmd = new CompositeCommand(new[] { subcmd1.Object, subcmd2.Object });
             cmd.Execute(null);
 
             subcmd1.Verify(c => c.CanExecute(null));
@@ -136,7 +136,7 @@ namespace ATZ.Commands.Tests
 
             var cmd = new CompositeCommand(subcmd.Object);
             cmd.CanExecute(parameter);
-            
+
             subcmd.Verify(c => c.CanExecute(parameter));
         }
 
@@ -164,7 +164,7 @@ namespace ATZ.Commands.Tests
             var subcmd2 = new Mock<ICommand>();
             subcmd2.Setup(c => c.CanExecute(null)).Returns(true);
 
-            var cmd = new CompositeCommand(new[] {subcmd1.Object, subcmd2.Object});
+            var cmd = new CompositeCommand(new[] { subcmd1.Object, subcmd2.Object });
 
             var call = 0;
             subcmd1.Setup(c => c.Execute(null)).Callback(() => call++.Should().Be(0));
@@ -182,7 +182,7 @@ namespace ATZ.Commands.Tests
             var subcmd2 = new Mock<ICommand>(MockBehavior.Strict);
             subcmd2.Setup(c => c.CanExecute(null)).Returns(false);
 
-            var cmd = new CompositeCommand(new [] {subcmd1.Object, subcmd2.Object});
+            var cmd = new CompositeCommand(new[] { subcmd1.Object, subcmd2.Object });
             cmd.Execute(null);
         }
 
@@ -211,7 +211,7 @@ namespace ATZ.Commands.Tests
             var subcmd3 = new Mock<ICommand>(MockBehavior.Strict);
             subcmd3.Setup(c => c.CanExecute(null)).Returns(true);
 
-            var cmd = new CompositeCommand(new [] {subcmd1.Object, subcmd2.Object, subcmd3.Object});
+            var cmd = new CompositeCommand(new[] { subcmd1.Object, subcmd2.Object, subcmd3.Object });
             cmd.Execute(null);
         }
 
@@ -227,7 +227,7 @@ namespace ATZ.Commands.Tests
             subcmd2.Setup(c => c.Execute(null))
                 .Callback(() => subcmd1.Raise(c => c.CanExecuteChanged += null, EventArgs.Empty));
 
-            var cmd = new CompositeCommand(new [] {subcmd1.Object, subcmd2.Object});
+            var cmd = new CompositeCommand(new[] { subcmd1.Object, subcmd2.Object });
             cmd.Execute(null);
         }
 
@@ -240,7 +240,7 @@ namespace ATZ.Commands.Tests
             var subcmd2 = new Mock<ICommand>();
             subcmd2.Setup(c => c.CanExecute(null)).Returns(true);
 
-            var cmd = new CompositeCommand(new[] {subcmd1.Object, subcmd2.Object});
+            var cmd = new CompositeCommand(new[] { subcmd1.Object, subcmd2.Object });
             cmd.Execute(null);
             cmd.Execute(null);
 
@@ -259,7 +259,7 @@ namespace ATZ.Commands.Tests
             var subcmd2 = new Mock<ICommand>(MockBehavior.Strict);
             subcmd2.Setup(c => c.CanExecute(null)).Returns(true);
 
-            var cmd = new CompositeCommand(new[] {subcmd1.Object, subcmd2.Object});
+            var cmd = new CompositeCommand(new[] { subcmd1.Object, subcmd2.Object });
             cmd.Execute(null);
 
             subcmd1.VerifyAll();
@@ -318,6 +318,14 @@ namespace ATZ.Commands.Tests
             // ReSharper disable once ObjectCreationAsStatement => We are testing the constructor.
             // ReSharper disable once ExpressionIsAlwaysNull => We are testing exactly this scenario.
             Assert.DoesNotThrow(() => new CompositeCommand(cmds));
+        }
+
+        [Test]
+        public void ProvideReadOnlyAccessToCommandsCollectionToAllowAccessToNonICommandMethodsInternally()
+        {
+            var subcmd = new Mock<ICommand>();
+            var testcmd = new TestCompositeCommand(subcmd.Object);
+            testcmd.Verify(subcmd.Object);
         }
     }
 }

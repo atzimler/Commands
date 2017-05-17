@@ -1,8 +1,8 @@
-﻿using System;
+﻿using JetBrains.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
-using JetBrains.Annotations;
 
 namespace ATZ.Commands
 {
@@ -20,6 +20,13 @@ namespace ATZ.Commands
         private object _parameter;
 
         /// <summary>
+        /// Returns a read-only list of the commands contained in the composition, so that non ICommand methods
+        /// of the commands can be accessed.
+        /// </summary>
+        [NotNull]
+        protected IReadOnlyList<ICommand> Commands => _commands;
+
+        /// <summary>
         /// Creates an empty CompositeCommand instance.
         /// </summary>
         public CompositeCommand()
@@ -31,7 +38,7 @@ namespace ATZ.Commands
         /// </summary>
         /// <param name="command">The command to be executed.</param>
         public CompositeCommand(ICommand command)
-            : this(new [] { command })
+            : this(new[] { command })
         {
         }
 
@@ -53,7 +60,7 @@ namespace ATZ.Commands
 
         private void AbortIfCanExecuteChangesToFalse(object sender, EventArgs e)
         {
-            var cmd = (ICommand) sender;
+            var cmd = (ICommand)sender;
 
             // ReSharper disable once PossibleNullReferenceException => bound inside of this object to itself - cannot be null.
             _abort = !cmd.CanExecute(_parameter);
