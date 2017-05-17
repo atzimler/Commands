@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows;
-using System.Windows.Input;
-using ATZ.DependencyInjection;
+﻿using ATZ.DependencyInjection;
 using ATZ.DependencyInjection.System.Windows;
 using JetBrains.Annotations;
 using Ninject;
+using System;
+using System.Collections.Generic;
+using System.Windows;
+using System.Windows.Input;
 
 namespace ATZ.Commands
 {
@@ -14,14 +14,18 @@ namespace ATZ.Commands
     /// </summary>
     public class MessageBoxQuestionCommand : ICommand
     {
+        private readonly Func<IMessageBox, MessageBoxResult?> _func;
+        private bool _canExecute;
+
+        /// <summary>
+        /// The list of the MessageBoxResult values that should be considered as an Approval answer from the user.
+        /// </summary>
         [NotNull]
-        private readonly List<MessageBoxResult> _approvals = new List<MessageBoxResult>
+        protected List<MessageBoxResult> Approvals { get; } = new List<MessageBoxResult>
         {
             MessageBoxResult.OK,
             MessageBoxResult.Yes
         };
-        private readonly Func<IMessageBox, MessageBoxResult?> _func;
-        private bool _canExecute;
 
         /// <summary>
         /// Event raised when CanExecute(parameter) value is possible changed. In the current implementation, the CanExecute value is
@@ -161,7 +165,7 @@ namespace ATZ.Commands
         public void Execute(object parameter)
         {
             var answer = _func(DependencyResolver.Instance.Get<IMessageBox>());
-            var result = answer.HasValue && _approvals.Contains(answer.Value);
+            var result = answer.HasValue && Approvals.Contains(answer.Value);
             if (result == _canExecute)
             {
                 return;

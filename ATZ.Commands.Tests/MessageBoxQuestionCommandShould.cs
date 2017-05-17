@@ -1,10 +1,10 @@
-﻿using System.Threading;
-using System.Windows;
-using ATZ.DependencyInjection;
+﻿using ATZ.DependencyInjection;
 using ATZ.DependencyInjection.System.Windows;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
+using System.Threading;
+using System.Windows;
 
 // ReSharper disable PossibleNullReferenceException => Moq and Fluent Assertions don't contain JetBrains annotations and as a result they are
 // triggering the null reference checker. However, this is a test code, so even if there is a null reference, it is not the end of the world.
@@ -294,6 +294,18 @@ namespace ATZ.Commands.Tests
             cmd.Execute(null);
 
             _messageBox.VerifyAll();
+        }
+
+        [Test]
+        public void CanUseNonDefaultApprovals()
+        {
+            _messageBox.Setup(mb => mb.Show("Question?")).Returns(MessageBoxResult.No);
+
+            var cmd = new NegatedMessageBoxQuestionCommand("Question?");
+            cmd.MonitorEvents();
+
+            cmd.Execute(null);
+            cmd.ShouldNotRaise(nameof(cmd.CanExecuteChanged));
         }
 
 

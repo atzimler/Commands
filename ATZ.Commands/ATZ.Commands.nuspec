@@ -19,6 +19,7 @@
     <releaseNotes>
 1.3.0:
 - Added CompositeCommand.Commands to allow read-only access to Commands collection for derived command classes. This will allow features to be implemented such as ResetCanExecute method of a contained MessageBoxQuestionCommand can be called.
+- Added MessageBoxQuestionCommand.Approvals to allow overriding the user approval answers.
       
 1.2.0:
 - IfCommand to execute ICommand branches conditionally.
